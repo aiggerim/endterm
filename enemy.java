@@ -1,7 +1,7 @@
 package maria;
 
 import java.awt.Image;
-
+// enemy
 public class enemy {
 	public int getX() {
 		return x;
