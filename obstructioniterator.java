@@ -2,6 +2,7 @@ package maria;
 
 import java.util.List;
 
+// obstructioniterator
 public class obstructioniterator {
     private List<enemy> enemies;
     private int position = 0;
