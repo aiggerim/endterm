@@ -1,5 +1,5 @@
 package maria;
-
+// staticvalues
 import java.awt.Image;
 import java.awt.List;
 import java.io.File;
