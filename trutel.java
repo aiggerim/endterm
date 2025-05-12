@@ -1,4 +1,3 @@
-// The file name "trutel" means "turtle", which is one of the moving roadblocks in the game.
 
 package maria;
 
