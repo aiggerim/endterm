@@ -1,13 +1,12 @@
 package maria;
 // staticvalues
 import java.awt.Image;
-import java.awt.List;
 import java.io.File;
 import java.util.*;
 
 import javax.imageio.ImageIO;
 
-public class staticvalues {
+public class StaticValues {
 	public static ArrayList<Image> mariao = new ArrayList<>();
 	public static Image start = null;
 	public static Image end = null;

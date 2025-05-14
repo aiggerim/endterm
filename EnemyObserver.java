@@ -3,6 +3,6 @@ package maria;
 // Debug: test change
 
 
-public interface enemyobserver {
+public interface EnemyObserver {
     void onenemycollision();
 }

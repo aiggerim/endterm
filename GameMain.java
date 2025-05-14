@@ -1,5 +1,5 @@
 package maria;
-// myframe
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,25 +8,25 @@ import java.util.*;
 
 import javax.swing.JFrame;
 
-public class myframe extends JFrame implements Runnable {
+public class GameMain extends JFrame implements Runnable {
 
-	private ArrayList<backgrond> backgronds = new ArrayList<>();
-	private backgrond backgrondnow = null;
-	private mario mario;
+	private ArrayList<Background> backgronds = new ArrayList<>();
+	private Background backgrondnow = null;
+	private final Mario mario;
 
-	public myframe() {
+	public GameMain() {
 		this.setTitle("Mario Game");
 		this.setSize(900, 600);
 		this.setLocationRelativeTo(null);
-		staticvalues.init();
+		StaticValues.init();
 
-		backgrondnow = new backgrond(0, false);
+		backgrondnow = new Background(0, false);
 		for (int i = 1; i <= 3; i++) {
-			this.backgronds.add(new backgrond(i, i == 3));
+			this.backgronds.add(new Background(i, i == 3));
 		}
 		this.backgrondnow = backgronds.get(0);
 
-		mario = new mario(0, 480);
+		mario = new Mario(0, 480);
 		mario.setBackgrond(backgrondnow);
 		this.repaint();
 
@@ -50,15 +50,15 @@ public class myframe extends JFrame implements Runnable {
 		Graphics graphics2 = bufferedImage.getGraphics();
 		graphics2.drawImage(this.backgrondnow.getBackgroundImage(), 0, 0, this);
 
-		java.util.Iterator<moveenemy> iterator2 = this.backgrondnow.enemy.iterator();
+		java.util.Iterator<MoveEnemy> iterator2 = this.backgrondnow.enemy.iterator();
 		while (iterator2.hasNext()) {
-			moveenemy moveenemy = iterator2.next();
+			MoveEnemy moveenemy = iterator2.next();
 			graphics2.drawImage(moveenemy.getImage(), moveenemy.getX(), moveenemy.getY(), this);
 		}
 
-		java.util.Iterator<enemy> iterator = this.backgrondnow.obstraction.iterator();
+		java.util.Iterator<Enemy> iterator = this.backgrondnow.obstraction.iterator();
 		while (iterator.hasNext()) {
-			enemy obstraction = iterator.next();
+			Enemy obstraction = iterator.next();
 			graphics2.drawImage(obstraction.getImage(), obstraction.getX(), obstraction.getY(), this);
 		}
 
@@ -77,16 +77,16 @@ public class myframe extends JFrame implements Runnable {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				myframe.this.mario.rightMove();
+				GameMain.this.mario.rightMove();
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				myframe.this.mario.leftMove();
+				GameMain.this.mario.leftMove();
 			}
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				myframe.this.mario.down(); // 👈 Қосылды
+				GameMain.this.mario.down(); // 👈 Қосылды
 			}
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				myframe.this.mario.jump(); // 👈 Қаралып жатыр
+				GameMain.this.mario.jump(); //TODO: fix multiple jumps
 			}
 		}
 
@@ -94,16 +94,16 @@ public class myframe extends JFrame implements Runnable {
 		@Override
 		public void keyReleased(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				myframe.this.mario.rightstop();
+				GameMain.this.mario.rightstop();
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				myframe.this.mario.leftstop();
+				GameMain.this.mario.leftstop();
 			}
 		}
 	}
 
 	public static void main(String[] args) {
-		new myframe();
+		new GameMain();
 	}
 
 	@Override

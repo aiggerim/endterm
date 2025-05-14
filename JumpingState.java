@@ -1,8 +1,8 @@
 package maria;
 // jumpingstate
-public class jumpingstate implements mariostate {
+public class JumpingState implements MarioState {
     @Override
-    public void handleinput(mario mario) {
+    public void handleinput(Mario mario) {
         mario.ymove = -10;
         mario.setStatus("jumping");
     }

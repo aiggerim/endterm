@@ -3,7 +3,7 @@ package maria;
 import java.awt.Image;
 
 
-public class moveenemy implements Runnable {
+public class MoveEnemy implements Runnable {
 	public int getX() {
 		return x;
 	}
@@ -95,17 +95,17 @@ public class moveenemy implements Runnable {
 	private int upmax = 0;
 	private int downmax = 0;
 	private Thread thread;
-	private backgrond backgrond;
+	private Background backgrond;
 
-	public backgrond getBackgrond() {
+	public Background getBackgrond() {
 		return backgrond;
 	}
 
-	public void setBackgrond(backgrond backgrond) {
+	public void setBackgrond(Background backgrond) {
 		this.backgrond = backgrond;
 	}
 	public void dead(){
-		this.image=staticvalues.trangel.get(2);
+		this.image= StaticValues.trangel.get(2);
 		this.backgrond.enemy.remove(this);
 		this.backgrond.remove.add(this);
 	}
@@ -125,13 +125,13 @@ public class moveenemy implements Runnable {
 				} else {
 					imagetype = 0;
 				}
-				this.image = staticvalues.trangel.get(imagetype);
+				this.image = StaticValues.trangel.get(imagetype);
 				boolean canLeft = true;
 				boolean canRight = true;
 			
 				boolean onLand = false;
 				for (int i = 0; i < this.backgrond.obstraction.size(); i++) {
-					enemy ob = backgrond.obstraction.get(i);
+					Enemy ob = backgrond.obstraction.get(i);
 			
 					if (ob.getX() == this.x + 60
 							&& (ob.getY() + 50 > this.y && ob.getY() - 50 < this.y)) {
@@ -168,7 +168,7 @@ public class moveenemy implements Runnable {
 				} else {
 					imagetype = 0;
 				}
-				this.image = staticvalues.flower.get(imagetype);
+				this.image = StaticValues.flower.get(imagetype);
 				if (this.isleftorup && this.y <= this.upmax) {
 					this.isleftorup = false;
 				}
@@ -189,22 +189,22 @@ public class moveenemy implements Runnable {
 
 	}
 
-	public moveenemy(int x, int y, boolean isleft, int type, backgrond backgrond) {
+	public MoveEnemy(int x, int y, boolean isleft, int type, Background backgrond) {
 		this.x = x;
 		this.y = y;
 		this.isleftorup = isleft;
 		this.type = type;
 		this.backgrond = backgrond;
 		if (type == 1) {
-			this.image = staticvalues.trangel.get(0);
+			this.image = StaticValues.trangel.get(0);
 		}
 		thread = new Thread(this);
 		thread.start();
 	}
 
 
-	public moveenemy(int x, int y, boolean isup, int type, int upmax,
-			int downmax, backgrond backgrond) {
+	public MoveEnemy(int x, int y, boolean isup, int type, int upmax,
+					 int downmax, Background backgrond) {
 		this.x = x;
 		this.y = y;
 		this.isleftorup = isup;
@@ -213,7 +213,7 @@ public class moveenemy implements Runnable {
 		this.downmax = downmax;
 		this.backgrond = backgrond;
 		if (type == 2) {
-			this.image = staticvalues.flower.get(0);
+			this.image = StaticValues.flower.get(0);
 		}
 		thread = new Thread(this);
 		thread.start();

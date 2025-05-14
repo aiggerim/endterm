@@ -2,7 +2,7 @@ package maria;
 
 import java.awt.Image;
 // enemy
-public class enemy {
+public class Enemy {
 	public int getX() {
 		return x;
 	}
@@ -49,7 +49,7 @@ public class enemy {
 	private int starttype; 
 	private Image image = null;
 
-	public enemy(int x, int y, int type) {
+	public Enemy(int x, int y, int type) {
 		this.x = x;
 		this.y = y;
 		this.type = type;
@@ -64,7 +64,7 @@ public class enemy {
 
 	public void setImage() 
 	{
-		image = staticvalues.obstruction.get(type);
+		image = StaticValues.obstruction.get(type);
 	}
 
 }

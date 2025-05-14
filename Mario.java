@@ -4,7 +4,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mario implements Runnable {
+public class Mario implements Runnable {
 
 	private int x;
 	private int y;
@@ -16,37 +16,37 @@ public class mario implements Runnable {
 	private int a = 1;
 	public int time = 0;
 	public Thread thread = null;
-	private backgrond backgrond = null;
+	private Background backgrond = null;
 	private int socre;
 	private int lift;
 	public boolean die = true;
 	private boolean isClear = false;
 
 	// Design Pattern fields
-	private mariostate state;
-	private movestrategy strategy;
-	private List<enemyobserver> observers = new ArrayList<>();
+	private MarioState state;
+	private MoveStrategy strategy;
+	private List<EnemyObserver> observers = new ArrayList<>();
 
-	public mario(int x, int y) {
+	public Mario(int x, int y) {
 		this.x = x;
 		this.y = y;
-		image = staticvalues.mariao.get(0);
+		image = StaticValues.mariao.get(0);
 		this.socre = 0;
 		this.lift = 3;
 		this.status = "right-standing";
-		this.state = new jumpingstate();
-		this.strategy = new moveleft();
+		this.state = new JumpingState();
+		this.strategy = new MoveLeft();
 		thread = new Thread(this);
 		thread.start();
 	}
 
 	// Observer
-	public void addobserver(enemyobserver o) {
+	public void addobserver(EnemyObserver o) {
 		observers.add(o);
 	}
 
 	public void notifyobservers() {
-		for (enemyobserver o : observers) {
+		for (EnemyObserver o : observers) {
 			o.onenemycollision();
 		}
 	}
@@ -81,7 +81,7 @@ public class mario implements Runnable {
 	}
 
 	public void dead() {
-		this.image = staticvalues.die;
+		this.image = StaticValues.die;
 		notifyobservers();
 		die = false;
 	}
@@ -126,7 +126,7 @@ public class mario implements Runnable {
 			}
 
 			for (int i = 0; i < backgrond.obstraction.size(); i++) {
-				enemy ob = backgrond.obstraction.get(i);
+				Enemy ob = backgrond.obstraction.get(i);
 				if ((ob.getX() == this.x + 50) && (ob.getY() + 50 > this.y && ob.getY() - 50 < this.y)) {
 					canright = false;
 				}
@@ -179,11 +179,11 @@ public class mario implements Runnable {
 				}
 			}
 			if (this.status.indexOf("jumping") != -1) temp += 4;
-			this.image = staticvalues.mariao.get(temp);
+			this.image = StaticValues.mariao.get(temp);
 			a++;
 
 			for (int i = 0; i < this.backgrond.enemy.size(); i++) {
-				moveenemy e = (moveenemy) this.backgrond.enemy.get(i);
+				MoveEnemy e = (MoveEnemy) this.backgrond.enemy.get(i);
 				if (e.getX() + 50 > this.x && e.getX() - 50 < this.x && e.getY() + 50 > this.y && e.getY() - 50 < this.y) {
 					this.dead();
 				}
@@ -216,8 +216,8 @@ public class mario implements Runnable {
 	public void setStatus(String status) { this.status = status; }
 	public Image getImage() { return image; }
 	public void setImage(Image image) { this.image = image; }
-	public backgrond getBackgrond() { return backgrond; }
-	public void setBackgrond(backgrond backgrond) { this.backgrond = backgrond; }
+	public Background getBackgrond() { return backgrond; }
+	public void setBackgrond(Background backgrond) { this.backgrond = backgrond; }
 	public int getSocre() { return socre; }
 	public void setSocre(int socre) { this.socre = socre; }
 	public int getLift() { return lift; }

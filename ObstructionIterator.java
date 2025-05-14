@@ -3,11 +3,11 @@ package maria;
 import java.util.List;
 
 // obstructioniterator
-public class obstructioniterator {
-    private List<enemy> enemies;
+public class ObstructionIterator {
+    private List<Enemy> enemies;
     private int position = 0;
 
-    public obstructioniterator(List<enemy> enemies) {
+    public ObstructionIterator(List<Enemy> enemies) {
         this.enemies = enemies;
     }
 
@@ -15,7 +15,7 @@ public class obstructioniterator {
         return position < enemies.size();
     }
 
-    public enemy next() {
+    public Enemy next() {
         return enemies.get(position++);
     }
 }
